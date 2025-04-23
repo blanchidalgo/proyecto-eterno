@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto ETERNO</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ffcc;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        #countdown {
+            font-size: 2.5rem;
+            margin-top: 20px;
+        }
+        #message {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Has sido seleccionado para el <strong>Proyecto ETERNO</strong>.</h1>
+    <p>No hagas preguntas. Hoy descubrirás la verdad sobre tu 2025.</p>
+    <div id="countdown"></div>
+    <div id="message">🔓 Bienvenido al Proyecto ETERNO. La verdad ha sido liberada.</div>
+
+    <script>
+        const countdownEl = document.getElementById("countdown");
+        const messageEl = document.getElementById("message");
+
+        const targetDate = new Date("January 1, 2026 00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                countdownEl.style.display = "none";
+                messageEl.style.display = "block";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
