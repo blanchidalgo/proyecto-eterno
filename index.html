@@ -164,6 +164,8 @@
                 case "pizza":
                     response = "CRONO: Nutriente circular. Perturbación mínima en la línea.";
                     break;
+                default:
+                    response = "CRONO: Entrada no reconocida.";
             }
 
                 outputEl.textContent += `> ${input}\n${response}\n\n`;
