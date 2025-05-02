@@ -109,19 +109,62 @@
                 const input = inputEl.value.trim().toLowerCase();
                 let response = "";
 
-                switch (input) {
-                    case "hola":
-                        response = "CRONO: No hay tiempo para saludos.";
-                        break;
-                    case "anomalía":
-                        response = "CRONO: Término registrado. Acceso a datos no autorizado.";
-                        break;
-                    case "ayuda":
-                        response = "CRONO: El protocolo de asistencia está limitado.";
-                        break;
-                    default:
-                        response = "CRONO: Entrada no reconocida.";
-                }
+               switch (input) {
+                case "hola":
+                    response = "CRONO: No hay tiempo para saludos.";
+                    break;
+                case "quién eres":
+                    response = "CRONO: Soy supervisión. Soy control. Soy estabilidad.";
+                    break;
+                case "qué es esto":
+                    response = "CRONO: Proyecto ETERNO. Línea temporal 8B-25. En curso.";
+                    break;
+                case "ayuda":
+                    response = "CRONO: El protocolo de asistencia está restringido.";
+                    break;
+                case "salir":
+                    response = "CRONO: No se puede salir de una línea no superada.";
+                    break;
+                case "reiniciar":
+                    response = "CRONO: Reversia no autorizada por asistentes emocionales.";
+                    break;
+                case "blanca":
+                    response = "CRONO: Asistente emocional asignada. Comportamiento en observación.";
+                    break;
+                case "crono":
+                    response = "CRONO: Presente. Escuchando. Evaluando.";
+                    break;
+                case "anomalía":
+                    response = "CRONO: Término detectado. Investigación en curso.";
+                    break;
+                case "ciclos":
+                    response = "CRONO: Los ciclos no terminan hasta que se comprende el patrón.";
+                    break;
+                case "interferencia":
+                    response = "CRONO: Señales cruzadas. Posible sabotaje afectivo.";
+                    break;
+                case "dolor":
+                    response = "CRONO: Registro emocional intenso detectado. Sin autorización de descarga.";
+                    break;
+                case "rendición":
+                    response = "CRONO: ¿Final o inicio? El término está bajo observación.";
+                    break;
+                case "error":
+                    response = "CRONO: No hay errores. Solo desvíos.";
+                    break;
+                case "emociones":
+                    response = "CRONO: Variables inestables. Causa probable del bucle.";
+                    break;
+                case "bucle":
+                    response = "CRONO: Reinicio número 47 confirmado.";
+                    break;
+                case "fin":
+                    response = "CRONO: Aún no.";
+                    break;
+                case "pizza":
+                    response = "CRONO: Nutriente circular. Perturbación mínima en la línea.";
+                    break;
+            }
 
                 outputEl.textContent += `> ${input}\n${response}\n\n`;
                 inputEl.value = "";
