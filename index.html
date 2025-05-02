@@ -57,6 +57,14 @@
             text-align: left;
             width: 100%;
         }
+        .flash {
+    animation: flash 0.2s;
+}
+
+@keyframes flash {
+    0% { background-color: #00ffcc; color: black; }
+    100% { background-color: black; color: #00ffcc; }
+}
     </style>
 </head>
 <body>
@@ -160,6 +168,8 @@
                         response = "CRONO: Entrada no reconocida.";
                 }
             }
+outputEl.classList.add("flash");
+setTimeout(() => outputEl.classList.remove("flash"), 200);
 
             outputEl.textContent += `> ${input}\n${response}\n\n`;
             inputEl.value = "";
