@@ -81,6 +81,11 @@
 </div>
 
 <script>
+    function toggleKORA() {
+    const koraSection = document.getElementById("kora-section");
+    koraSection.style.display = koraSection.style.display === "none" ? "block" : "none";
+}
+
     const countdownEl = document.getElementById("countdown");
     const messageEl = document.getElementById("message");
     const terminalEl = document.getElementById("terminal");
@@ -112,6 +117,29 @@
     updateCountdown();
 
     // Terminal simple para CRONO
+    const koraFragmentKeys = ["anomalía", "ciclos", "interferencia", "dolor", "rendición"];
+function desbloquearArchivo(id) {
+    const key = id.replace("file-", "");
+    let stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
+    if (!stored.includes(key)) {
+        stored.push(key);
+        localStorage.setItem("kora_fragments", JSON.stringify(stored));
+        updateKORASection();
+    }
+}
+function updateKORASection() {
+    const stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
+    document.querySelectorAll(".kora-file").forEach(el => {
+        const key = el.dataset.key;
+        if (stored.includes(key)) {
+            el.innerHTML = `✅ ${key.toUpperCase()} — <a href="archivos/${key}.pdf" target="_blank">Descargar</a>`;
+        } else {
+            el.innerHTML = `🔒 ${key.toUpperCase()} — [Acceso denegado]`;
+        }
+    });
+}
+updateKORASection();
+
     inputEl.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             const input = inputEl.value.trim().toLowerCase();
@@ -145,20 +173,26 @@
                         response = "CRONO: Proyecto ETERNO. Línea temporal 8B-25. En curso.";
                         break;
                     case "anomalía":
-                        response = "CRONO: Término detectado. Investigación en curso.";
-                        break;
-                    case "ciclos":
-                        response = "CRONO: Los ciclos no terminan hasta que se comprende el patrón.";
-                        break;
-                    case "interferencia":
-                        response = "CRONO: Señales cruzadas. Posible sabotaje afectivo.";
-                        break;
-                    case "dolor":
-                        response = "CRONO: Registro emocional intenso detectado. Sin autorización de descarga.";
-                        break;
-                    case "rendición":
-                        response = "CRONO: ¿Final o inicio? El término está bajo observación.";
-                        break;
+    desbloquearArchivo("file-anomalia");
+    response = "CRONO: Término detectado. Registro ANOMALÍA habilitado.";
+    break;
+case "ciclos":
+    desbloquearArchivo("file-ciclos");
+    response = "CRONO: Los ciclos no terminan hasta que se comprende el patrón. Registro CICLOS habilitado.";
+    break;
+case "interferencia":
+    desbloquearArchivo("file-interferencia");
+    response = "CRONO: Señales cruzadas. Posible sabotaje afectivo. Registro INTERFERENCIA habilitado.";
+    break;
+case "dolor":
+    desbloquearArchivo("file-dolor");
+    response = "CRONO: Registro emocional intenso detectado. Registro DOLOR habilitado.";
+    break;
+case "rendición":
+    desbloquearArchivo("file-rendicion");
+    response = "CRONO: ¿Final o inicio? Registro RENDICIÓN habilitado.";
+    break;
+
                     case "emociones":
                         response = "CRONO: Variables inestables. Causa probable del bucle.";
                         break;
@@ -181,5 +215,20 @@ setTimeout(() => outputEl.classList.remove("flash"), 200);
         }
     });
 </script>
+    <div id="kora-section" style="display: none; margin-top: 40px;">
+    <h2>DÆTA:KORA</h2>
+    <div id="kora-files">
+        <p class="kora-file" data-key="anomalía">🔒 ANOMALÍA — [Acceso denegado]</p>
+        <p class="kora-file" data-key="ciclos">🔒 CICLOS — [Acceso denegado]</p>
+        <p class="kora-file" data-key="interferencia">🔒 INTERFERENCIA — [Acceso denegado]</p>
+        <p class="kora-file" data-key="dolor">🔒 DOLOR — [Acceso denegado]</p>
+        <p class="kora-file" data-key="rendición">🔒 RENDICIÓN — [Acceso denegado]</p>
+    </div>
+</div>
+<!-- Botón para mostrar sección DÆTA:KORA -->
+<button onclick="toggleKORA()" style="margin-top: 20px; padding: 10px; font-family: 'Courier New', monospace; background-color: black; border: 1px solid #00ffcc; color: #00ffcc; cursor: pointer;">
+    Acceder a DÆTA:KORA
+</button>
+
 </body>
 </html>
