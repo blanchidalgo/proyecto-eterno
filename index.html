@@ -214,6 +214,15 @@ setTimeout(() => outputEl.classList.remove("flash"), 200);
             outputEl.scrollTop = outputEl.scrollHeight;
         }
     });
+    function resetProgress() {
+    if (confirm("¿Reiniciar progreso? Esto borrará los archivos desbloqueados.")) {
+        localStorage.removeItem("kora_fragments");
+        updateKORASection();
+        outputEl.textContent += "> Reinicio manual ejecutado.\nCRONO: Todos los registros han sido eliminados.\n\n";
+        outputEl.scrollTop = outputEl.scrollHeight;
+    }
+}
+
 </script>
     <div id="kora-section" style="display: none; margin-top: 40px;">
     <h2>DÆTA:KORA</h2>
@@ -228,6 +237,10 @@ setTimeout(() => outputEl.classList.remove("flash"), 200);
 <!-- Botón para mostrar sección DÆTA:KORA -->
 <button onclick="toggleKORA()" style="margin-top: 20px; padding: 10px; font-family: 'Courier New', monospace; background-color: black; border: 1px solid #00ffcc; color: #00ffcc; cursor: pointer;">
     Acceder a DÆTA:KORA
+</button>
+<!-- SOLO PARA PRUEBAS - Eliminar antes del escape room -->
+<button onclick="resetProgress()" style="margin-top: 10px; padding: 10px; font-family: 'Courier New', monospace; background-color: black; border: 1px solid red; color: red; cursor: pointer;">
+    🔄 Resetear todo (PRUEBAS)
 </button>
 
 </body>
