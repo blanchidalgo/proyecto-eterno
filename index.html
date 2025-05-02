@@ -16,46 +16,33 @@
             height: 100vh;
             text-align: center;
         }
-
         h1 {
             font-size: 2rem;
         }
-
         #countdown {
             font-size: 2.5rem;
             margin-top: 20px;
         }
-
         #message {
             font-size: 1.5rem;
             margin-top: 30px;
             display: none;
         }
-
-        #terminal {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 30px;
-            width: 80%;
-            max-width: 600px;
+        #inputBox {
+            margin-top: 40px;
         }
-
-        #input {
-            width: 100%;
+        input[type="text"] {
             padding: 10px;
-            background-color: black;
-            border: 1px solid #00ffcc;
-            color: #00ffcc;
-            font-family: 'Courier New', Courier, monospace;
             font-size: 1rem;
+            background-color: black;
+            color: #00ffcc;
+            border: 1px solid #00ffcc;
+            width: 80%;
+            max-width: 400px;
         }
-
-        #output {
-            margin-top: 10px;
-            white-space: pre-wrap;
-            text-align: left;
-            width: 100%;
+        #response {
+            margin-top: 20px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -65,19 +52,16 @@
     <div id="countdown"></div>
     <div id="message">🔓 Bienvenido al Proyecto ETERNO. La verdad ha sido liberada.</div>
 
-    <!-- Terminal de CRONO -->
-    <div id="terminal">
-        <p>CRONO está en línea. Introduce una instrucción:</p>
-        <input type="text" id="input" placeholder="Escribe aquí..." autofocus>
-        <pre id="output"></pre>
+    <div id="inputBox">
+        <input type="text" id="userInput" placeholder="Habla con CRONO..." />
+        <div id="response"></div>
     </div>
 
     <script>
         const countdownEl = document.getElementById("countdown");
         const messageEl = document.getElementById("message");
-        const terminalEl = document.getElementById("terminal");
-        const inputEl = document.getElementById("input");
-        const outputEl = document.getElementById("output");
+        const userInput = document.getElementById("userInput");
+        const responseEl = document.getElementById("response");
 
         const targetDate = new Date("January 1, 2025 00:00:00").getTime();
 
@@ -88,7 +72,6 @@
             if (distance <= 0) {
                 countdownEl.style.display = "none";
                 messageEl.style.display = "block";
-                terminalEl.style.display = "flex";
                 return;
             }
 
@@ -103,74 +86,67 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Terminal simple para CRONO
-        inputEl.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                const input = inputEl.value.trim().toLowerCase();
-                let response = "";
+        userInput.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                const input = userInput.value.toLowerCase().trim();
+                let response = "⚠️ Entrada no reconocida por CRONO.";
 
-               switch (input) {
-                case "hola":
+                if (input.includes("pizza")) {
+                    response = "CRONO no consume alimentos. Blanca sí querría una, probablemente.";
+                } else if (input.includes("hola")) {
                     response = "CRONO: No hay tiempo para saludos.";
-                    break;
-                case "quién eres":
+                } else if (input.includes("quién eres")) {
                     response = "CRONO: Soy supervisión. Soy control. Soy estabilidad.";
-                    break;
-                case "qué es esto":
-                    response = "CRONO: Proyecto ETERNO. Línea temporal 8B-25. En curso.";
-                    break;
-                case "ayuda":
-                    response = "CRONO: El protocolo de asistencia está restringido.";
-                    break;
-                case "salir":
-                    response = "CRONO: No se puede salir de una línea no superada.";
-                    break;
-                case "reiniciar":
-                    response = "CRONO: Reversia no autorizada por asistentes emocionales.";
-                    break;
-                case "blanca":
+                } else if (input.includes("blanca")) {
                     response = "CRONO: Asistente emocional asignada. Comportamiento en observación.";
-                    break;
-                case "crono":
+                } else if (input.includes("ayuda")) {
+                    response = "CRONO: El protocolo de asistencia está restringido.";
+                } else if (input.includes("salir")) {
+                    response = "CRONO: No se puede salir de una línea no superada.";
+                } else if (input.includes("reiniciar")) {
+                    response = "CRONO: Reversia no autorizada por asistentes emocionales.";
+                } else if (input.includes("crono")) {
                     response = "CRONO: Presente. Escuchando. Evaluando.";
-                    break;
-                case "anomalía":
-                    response = "CRONO: Término detectado. Investigación en curso.";
-                    break;
-                case "ciclos":
-                    response = "CRONO: Los ciclos no terminan hasta que se comprende el patrón.";
-                    break;
-                case "interferencia":
-                    response = "CRONO: Señales cruzadas. Posible sabotaje afectivo.";
-                    break;
-                case "dolor":
-                    response = "CRONO: Registro emocional intenso detectado. Sin autorización de descarga.";
-                    break;
-                case "rendición":
-                    response = "CRONO: ¿Final o inicio? El término está bajo observación.";
-                    break;
-                case "error":
+                } else if (input.includes("tonto")) {
+                    response = "CRONO: Insulto detectado. No hay espacio para hostilidad en esta línea temporal.";
+                } else if (input.includes("error")) {
                     response = "CRONO: No hay errores. Solo desvíos.";
-                    break;
-                case "emociones":
-                    response = "CRONO: Variables inestables. Causa probable del bucle.";
-                    break;
-                case "bucle":
-                    response = "CRONO: Reinicio número 47 confirmado.";
-                    break;
-                case "fin":
-                    response = "CRONO: Aún no.";
-                    break;
-                case "pizza":
-                    response = "CRONO: Nutriente circular. Perturbación mínima en la línea.";
-                    break;
-                default:
+                } else {
+                    switch (input) {
+                        case "qué es esto":
+                            response = "CRONO: Proyecto ETERNO. Línea temporal 8B-25. En curso.";
+                            break;
+                        case "anomalía":
+                            response = "CRONO: Término detectado. Investigación en curso.";
+                            break;
+                        case "ciclos":
+                            response = "CRONO: Los ciclos no terminan hasta que se comprende el patrón.";
+                            break;
+                        case "interferencia":
+                            response = "CRONO: Señales cruzadas. Posible sabotaje afectivo.";
+                            break;
+                        case "dolor":
+                            response = "CRONO: Registro emocional intenso detectado. Sin autorización de descarga.";
+                            break;
+                        case "rendición":
+                            response = "CRONO: ¿Final o inicio? El término está bajo observación.";
+                            break;
+                        case "emociones":
+                            response = "CRONO: Variables inestables. Causa probable del bucle.";
+                            break;
+                        case "bucle":
+                            response = "CRONO: Reinicio número 47 confirmado.";
+                            break;
+                        case "fin":
+                            response = "CRONO: Aún no.";
+                            break;
+                        default:
                     response = "CRONO: Entrada no reconocida.";
             }
+                }
 
-                outputEl.textContent += `> ${input}\n${response}\n\n`;
-                inputEl.value = "";
-                outputEl.scrollTop = outputEl.scrollHeight;
+                responseEl.textContent = response;
+                userInput.value = "";
             }
         });
     </script>
