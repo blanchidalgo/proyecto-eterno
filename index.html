@@ -145,12 +145,12 @@ function desbloquearArchivo(id) {
 
     // Mostrar automáticamente la sección DÆTA:KORA si está oculta
     const koraSection = document.getElementById("kora-section");
-    if (koraSection.style.display === "none") {
-        koraSection.style.display = "block";
-    }
-     document.getElementById("kora-section").style.display = "block";
-    document.getElementById("kora-section").scrollIntoView({ behavior: "smooth" });
+if (koraSection.style.display === "none") {
+    koraSection.style.display = "block";
 }
+koraSection.scrollIntoView({ behavior: "smooth" });
+}
+
 function updateKORASection() {
     const stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
     const container = document.getElementById("kora-files");
