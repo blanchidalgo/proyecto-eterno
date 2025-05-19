@@ -142,6 +142,8 @@ function desbloquearArchivo(id) {
         localStorage.setItem("kora_fragments", JSON.stringify(stored));
         updateKORASection();
     }
+     document.getElementById("kora-section").style.display = "block";
+    document.getElementById("kora-section").scrollIntoView({ behavior: "smooth" });
 }
 function updateKORASection() {
     const stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
