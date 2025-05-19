@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto ETERNO</title>
     <style>
+        .visor {
+    background-color: #0e0e0e;
+    color: #00ffcc;
+    font-family: monospace;
+    border: 1px solid #00ffcc;
+    padding: 1em;
+    margin-top: 1em;
+    white-space: pre-wrap;
+}
+
+.oculto {
+    display: none;
+}
+
+.entrada-clave {
+    padding: 0.5em;
+    font-size: 1em;
+    font-family: monospace;
+    background: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+    margin-right: 0.5em;
+}
+
+.boton-clave {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    font-family: monospace;
+    background: #0f0;
+    color: #000;
+    border: none;
+    cursor: pointer;
+}
+.boton-clave:hover {
+    background: #00cc66;
+}
+
         body {
             background-color: black;
             color: #00ffcc;
@@ -222,8 +259,44 @@ setTimeout(() => outputEl.classList.remove("flash"), 200);
         outputEl.scrollTop = outputEl.scrollHeight;
     }
 }
+function verificarClaveCiclos() {
+    const clave = document.getElementById("clave-ciclos").value.trim().toLowerCase();
+    if (clave === "ciclos") {
+        document.getElementById("clave-ciclos").disabled = true;
+        document.querySelector(".boton-clave").disabled = true;
+        document.getElementById("cargando-ciclos").classList.remove("oculto");
+
+        setTimeout(() => {
+            document.getElementById("cargando-ciclos").classList.add("oculto");
+            document.getElementById("archivo-ciclos").classList.remove("oculto");
+        }, 2000); // Tiempo de carga simulado
+    }
+}
 
 </script>
+    <div id="visor-ciclos" style="margin-top: 40px;">
+  <input type="text" id="clave-ciclos" placeholder="Introduce palabra clave" class="entrada-clave">
+  <button onclick="verificarClaveCiclos()" class="boton-clave">Acceder</button>
+
+  <div id="cargando-ciclos" class="oculto visor">⏳ Cargando archivo CICLOS...</div>
+
+  <div id="archivo-ciclos" class="archivo oculto visor">
+  <pre>
+📁 CICLOS ANTERIORES
+
+Ciclo 03 - 11 de marzo de 2027
+Estado emocional: estable.
+Interacción destacada: se rieron durante 3 minutos con el vídeo del "Paco papas".
+Comentario personal: Subjetivamente, yo también lo disfruté.
+
+Ciclo 07 - 12 de septiembre de 2029
+Estado emocional: nostálgico.
+Interacción destacada: [Nombre] lloró durante el juego de “La carta que nunca envié”.
+Comentario no enviado a CRONO: No quiero que olviden este momento.
+</pre>
+  </div>
+</div>
+
     <div id="kora-section" style="display: none; margin-top: 40px;">
     <h2>DÆTA:KORA</h2>
     <div id="kora-files">
