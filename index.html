@@ -163,7 +163,14 @@ function desbloquearArchivo(id) {
         localStorage.setItem("kora_fragments", JSON.stringify(stored));
         updateKORASection();
     }
+
+    // 👉 Mostrar sección de KORA si estaba oculta
+    const koraSection = document.getElementById("kora-section");
+    if (koraSection.style.display === "none") {
+        koraSection.style.display = "block";
+    }
 }
+
 function updateKORASection() {
     const stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
     document.querySelectorAll(".kora-file").forEach(el => {
