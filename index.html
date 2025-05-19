@@ -117,7 +117,7 @@
     updateCountdown();
 
     // Terminal simple para CRONO
-    const koraFragmentKeys = ["anomalía", "ciclos", "interferencia", "dolor", "rendición"];
+    const koraFragmentKeys = ["ciclos", "dolor", "recuerdos", "despertar", "despedida"];
 function desbloquearArchivo(id) {
     const key = id.replace("file-", "");
     let stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
@@ -172,25 +172,25 @@ updateKORASection();
                     case "qué es esto":
                         response = "CRONO: Proyecto ETERNO. Línea temporal 8B-25. En curso.";
                         break;
-                    case "anomalía":
-    desbloquearArchivo("file-anomalia");
-    response = "CRONO: Término detectado. Registro ANOMALÍA habilitado.";
+                    case "recuerdos":
+    desbloquearArchivo("file-recuerdos");
+    response = "CRONO: Término detectado. Registro RECUERDOS habilitado.";
     break;
 case "ciclos":
     desbloquearArchivo("file-ciclos");
     response = "CRONO: Los ciclos no terminan hasta que se comprende el patrón. Registro CICLOS habilitado.";
     break;
-case "interferencia":
-    desbloquearArchivo("file-interferencia");
-    response = "CRONO: Señales cruzadas. Posible sabotaje afectivo. Registro INTERFERENCIA habilitado.";
+case "despertar":
+    desbloquearArchivo("file-despertar");
+    response = "CRONO: Señales cruzadas. Posible sabotaje afectivo. Registro DESPERTAR habilitado.";
     break;
 case "dolor":
     desbloquearArchivo("file-dolor");
     response = "CRONO: Registro emocional intenso detectado. Registro DOLOR habilitado.";
     break;
-case "rendición":
-    desbloquearArchivo("file-rendicion");
-    response = "CRONO: ¿Final o inicio? Registro RENDICIÓN habilitado.";
+case "despedida":
+    desbloquearArchivo("file-despedida");
+    response = "CRONO: ¿Final o inicio? Registro DESPEDIDA habilitado.";
     break;
 
                     case "emociones":
@@ -227,11 +227,11 @@ setTimeout(() => outputEl.classList.remove("flash"), 200);
     <div id="kora-section" style="display: none; margin-top: 40px;">
     <h2>DÆTA:KORA</h2>
     <div id="kora-files">
-        <p class="kora-file" data-key="anomalía">🔒 DÆTA:KORA_1 — [Acceso denegado]</p>
-        <p class="kora-file" data-key="ciclos">🔒 DÆTA:KORA_2 — [Acceso denegado]</p>
-        <p class="kora-file" data-key="interferencia">🔒 DÆTA:KORA_3 — [Acceso denegado]</p>
-        <p class="kora-file" data-key="dolor">🔒 DÆTA:KORA_4 — [Acceso denegado]</p>
-        <p class="kora-file" data-key="rendición">🔒 DÆTA:KORA_5 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="ciclos">🔒 DÆTA:KORA_1 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="dolor">🔒 DÆTA:KORA_2 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="recuerdos">🔒 DÆTA:KORA_3 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="despertar">🔒 DÆTA:KORA_4 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="despedida">🔒 DÆTA:KORA_5 — [Acceso denegado]</p>
     </div>
 </div>
 <!-- Botón para mostrar sección DÆTA:KORA -->
