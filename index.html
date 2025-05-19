@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto ETERNO</title>
     <style>
         .visor {
-            background-color: #0e0e0e;
-            color: #00ffcc;
-            font-family: monospace;
-            border: 1px solid #00ffcc;
-            padding: 1em;
-            margin-top: 1em;
-            white-space: pre-wrap;
-        }
+    background-color: #0e0e0e;
+    color: #00ffcc;
+    font-family: monospace;
+    border: 1px solid #00ffcc;
+    padding: 1em;
+    margin-top: 1em;
+    white-space: pre-wrap;
+}
 
-        .oculto {
-            display: none;
-        }
+.oculto {
+    display: none;
+}
 
-        .entrada-clave {
-            padding: 0.5em;
-            font-size: 1em;
-            font-family: monospace;
-            background: #111;
-            color: #0f0;
-            border: 1px solid #0f0;
-            margin-right: 0.5em;
-        }
+.entrada-clave {
+    padding: 0.5em;
+    font-size: 1em;
+    font-family: monospace;
+    background: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+    margin-right: 0.5em;
+}
 
-        .boton-clave {
-            padding: 0.5em 1em;
-            font-size: 1em;
-            font-family: monospace;
-            background: #0f0;
-            color: #000;
-            border: none;
-            cursor: pointer;
-        }
-
-        .boton-clave:hover {
-            background: #00cc66;
-        }
+.boton-clave {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    font-family: monospace;
+    background: #0f0;
+    color: #000;
+    border: none;
+    cursor: pointer;
+}
+.boton-clave:hover {
+    background: #00cc66;
+}
 
         body {
             background-color: black;
@@ -96,180 +95,212 @@
             width: 100%;
         }
         .flash {
-            animation: flash 0.2s;
-        }
+    animation: flash 0.2s;
+}
 
-        @keyframes flash {
-            0% {
-                background-color: #00ffcc;
-                color: black;
-            }
-
-            100% {
-                background-color: black;
-                color: #00ffcc;
-            }
-        }
+@keyframes flash {
+    0% { background-color: #00ffcc; color: black; }
+    100% { background-color: black; color: #00ffcc; }
+}
     </style>
 </head>
-
 <body>
     <h1>Has sido seleccionadx para el <strong>Proyecto ETERNO</strong>.</h1>
     <p>No hagas preguntas. Próximamente descubrirás la verdad sobre tu 2025.</p>
     <div id="countdown"></div>
     <div id="message">🔓 Bienvenido al Proyecto ETERNO. La verdad ha sido liberada.</div>
 
-    <!-- Terminal de CRONO -->
-    <div id="terminal">
-        <p>CRONO está en línea. Introduce una instrucción:</p>
-        <input type="text" id="input" placeholder="Escribe aquí..." autofocus />
-        <pre id="output"></pre>
-        <!-- Aquí va el botón reset -->
-        <button id="resetBtn" class="boton-clave" style="margin-top: 1em;">Resetear archivos KORA</button>
-    </div>
+<!-- Terminal de CRONO -->
+<div id="terminal">
+    <p>CRONO está en línea. Introduce una instrucción:</p>
+    <input type="text" id="input" placeholder="Escribe aquí..." autofocus>
+    <pre id="output"></pre>
+</div>
 
-    <script>
-        const countdownEl = document.getElementById("countdown");
-        const messageEl = document.getElementById("message");
-        const terminalEl = document.getElementById("terminal");
-        const inputEl = document.getElementById("input");
-        const outputEl = document.getElementById("output");
-        const resetBtn = document.getElementById("resetBtn");
+<script>
+    function toggleKORA() {
+    const koraSection = document.getElementById("kora-section");
+    koraSection.style.display = koraSection.style.display === "none" ? "block" : "none";
+}
 
-        const targetDate = new Date("January 1, 2025 00:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    const messageEl = document.getElementById("message");
+    const terminalEl = document.getElementById("terminal");
+    const inputEl = document.getElementById("input");
+    const outputEl = document.getElementById("output");
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+    const targetDate = new Date("January 1, 2025 00:00:00").getTime();
 
-            if (distance <= 0) {
-                countdownEl.style.display = "none";
-                messageEl.style.display = "block";
-                terminalEl.style.display = "flex";
-                return;
-            }
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        if (distance <= 0) {
+            countdownEl.style.display = "none";
+            messageEl.style.display = "block";
+            terminalEl.style.display = "flex";
+            return;
         }
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Terminal simple para CRONO
-        function desbloquearArchivo(id) {
-            const key = id.replace("file-", "");
-            let stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
-            if (!stored.includes(key)) {
-                stored.push(key);
-                localStorage.setItem("kora_fragments", JSON.stringify(stored));
-                updateKORASection();
-            }
+        countdownEl.innerHTML = ${days}d ${hours}h ${minutes}m ${seconds}s;
+    }
 
-            const koraSection = document.getElementById("kora-section");
-            if (koraSection.style.display === "none") {
-                koraSection.style.display = "block";
-            }
-        }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-        function updateKORASection() {
-            const stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
-            document.querySelectorAll(".kora-file").forEach((el) => {
-                const key = el.dataset.key;
-                if (stored.includes(key)) {
-                    el.innerHTML = `✅ ${key.toUpperCase()} — <a href="archivos/${key}.pdf" target="_blank">Descargar</a>`;
-                } else {
-                    el.innerHTML = `🔒 ${key.toUpperCase()} — [Acceso denegado]`;
-                }
-            });
-        }
+    // Terminal simple para CRONO
+    const koraFragmentKeys = ["anomalía", "ciclos", "interferencia", "dolor", "rendición"];
+function desbloquearArchivo(id) {
+    const key = id.replace("file-", "");
+    let stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
+    if (!stored.includes(key)) {
+        stored.push(key);
+        localStorage.setItem("kora_fragments", JSON.stringify(stored));
         updateKORASection();
+    }
 
-        inputEl.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                const input = inputEl.value.trim().toLowerCase();
-                let response = "";
+    // 👉 Mostrar sección de KORA si estaba oculta
+    const koraSection = document.getElementById("kora-section");
+    if (koraSection.style.display === "none") {
+        koraSection.style.display = "block";
+    }
+}
 
-                if (input.includes("pizza")) {
-                    response = "CRONO no consume alimentos. Blanca sí querría una, probablemente.";
-                } else if (input.includes("hola")) {
-                    response = "CRONO: No hay tiempo para saludos.";
-                } else if (input.includes("quién eres")) {
-                    response = "CRONO: Soy supervisión. Soy control. Soy estabilidad.";
-                } else if (input.includes("ayuda")) {
-                    response = "CRONO: El protocolo de asistencia está restringido.";
-                } else if (input.includes("salir")) {
-                    response = "CRONO: No se puede salir de una línea no superada.";
-                } else if (input.includes("reiniciar")) {
-                    response = "CRONO: Reversia no autorizada por asistentes emocionales.";
-                } else if (input.includes("blanca")) {
-                    response = "CRONO: Asistente emocional asignada. Comportamiento en observación.";
-                } else if (input.includes("crono")) {
-                    response = "CRONO: Presente. Escuchando. Evaluando.";
-                } else if (input.includes("error")) {
-                    response = "CRONO: No hay errores. Solo desvíos.";
-                } else if (input.includes("proyecto eterno")) {
-                    response =
-                        "CRONO: El Proyecto Eterno es un experimento liderado por EÓN en colaboración con su IA de supervisión, CRONO. Consiste en seleccionar grupos humanos con fuertes lazos afectivos y colocarles en un bucle de un mismo año para observar cómo evolucionan emocionalmente con cada repetición. Cada grupo está en una línea temporal específica. En este caso, ellos están en la línea 8B, viviendo repetidamente el año 2025, el nombre de su grupo es 8B-25. El objetivo del experimento es ver si pueden trascender ese año de forma emocional y afectiva. Si lo consiguen, se les permite avanzar en el tiempo. Si no, se reinician.";
-                } else if (input.includes("eón")) {
-                    response =
-                        "CRONO: La Fundación Eón es una organización científica global que vela por la estabilidad del tiempo emocional de la humanidad. No alteran la historia, pero sí analizan líneas temporales donde se han detectado anomalías emocionales colectivas: traumas, bloqueos, patrones de inercia, etc.";
-                } else {
-                    switch (input) {
-                        case "qué es esto":
-                            response = "CRONO: Proyecto ETERNO. Línea temporal 8B-25. En curso.";
-                            break;
-                        case "anomalía":
-                            desbloquearArchivo("file-anomalia");
-                            response = "Archivo ANOMALÍA desbloqueado. Revisa sección KORA.";
-                            break;
-                        case "ciclos":
-                            desbloquearArchivo("file-ciclos");
-                            response = "Archivo CICLOS desbloqueado. Revisa sección KORA.";
-                            break;
-                        case "interferencia":
-                            desbloquearArchivo("file-interferencia");
-                            response = "Archivo INTERFERENCIA desbloqueado. Revisa sección KORA.";
-                            break;
-                        case "dolor":
-                            desbloquearArchivo("file-dolor");
-                            response = "Archivo DOLOR desbloqueado. Revisa sección KORA.";
-                            break;
-                        case "rendición":
-                            desbloquearArchivo("file-rendicion");
-                            response = "Archivo RENDICIÓN desbloqueado. Revisa sección KORA.";
-                            break;
-                        default:
-                            response = "CRONO: Comando no reconocido. Intenta otra instrucción.";
-                    }
+function updateKORASection() {
+    const stored = JSON.parse(localStorage.getItem("kora_fragments") || "[]");
+    document.querySelectorAll(".kora-file").forEach(el => {
+        const key = el.dataset.key;
+        if (stored.includes(key)) {
+            el.innerHTML = ✅ ${key.toUpperCase()} — <a href="archivos/${key}.pdf" target="_blank">Descargar</a>;
+        } else {
+            el.innerHTML = 🔒 ${key.toUpperCase()} — [Acceso denegado];
+        }
+    });
+}
+updateKORASection();
+
+    inputEl.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            const input = inputEl.value.trim().toLowerCase();
+            let response = "";
+
+            if (input.includes("pizza")) {
+                response = "CRONO no consume alimentos. Blanca sí querría una, probablemente.";
+            } else if (input.includes("hola")) {
+                response = "CRONO: No hay tiempo para saludos.";
+            } else if (input.includes("quién eres")) {
+                response = "CRONO: Soy supervisión. Soy control. Soy estabilidad.";
+            } else if (input.includes("ayuda")) {
+                response = "CRONO: El protocolo de asistencia está restringido.";
+            } else if (input.includes("salir")) {
+                response = "CRONO: No se puede salir de una línea no superada.";
+            } else if (input.includes("reiniciar")) {
+                response = "CRONO: Reversia no autorizada por asistentes emocionales.";
+            } else if (input.includes("blanca")) {
+                response = "CRONO: Asistente emocional asignada. Comportamiento en observación.";
+            } else if (input.includes("crono")) {
+                response = "CRONO: Presente. Escuchando. Evaluando.";
+            } else if (input.includes("error")) {
+                response = "CRONO: No hay errores. Solo desvíos.";
+            } else if (input.includes("proyecto eterno")) {
+                response = "CRONO: El Proyecto Eterno es un experimento liderado por EÓN en colaboración con su IA de supervisión, CRONO. Consiste en seleccionar grupos humanos con fuertes lazos afectivos y colocarles en un bucle de un mismo año para observar cómo evolucionan emocionalmente con cada repetición. Cada grupo está en una línea temporal específica. En este caso, ellos están en la línea 8B, viviendo repetidamente el año 2025, el nombre de su grupo es 8B-25. El objetivo del experimento es ver si pueden trascender ese año de forma emocional y afectiva. Si lo consiguen, se les permite avanzar en el tiempo. Si no, se reinician.";
+            } else if (input.includes("Eón")) {
+                response = "CRONO: La Fundación Eón es una organización científica global que vela por la estabilidad del tiempo emocional de la humanidad. No alteran la historia, pero sí analizan líneas temporales donde se han detectado anomalías emocionales colectivas: traumas, bloqueos, patrones de inercia, etc."; 
+            } else {
+                switch (input) {
+                    case "qué es esto":
+                        response = "CRONO: Proyecto ETERNO. Línea temporal 8B-25. En curso.";
+                        break;
+                    case "anomalía":
+    desbloquearArchivo("file-anomalia");
+    response = "CRONO: Término detectado. Registro ANOMALÍA habilitado.";
+    break;
+case "ciclos":
+    desbloquearArchivo("file-ciclos");
+    response = "CRONO: Los ciclos no terminan hasta que se comprende el patrón. Registro CICLOS habilitado.";
+    break;
+case "interferencia":
+    desbloquearArchivo("file-interferencia");
+    response = "CRONO: Señales cruzadas. Posible sabotaje afectivo. Registro INTERFERENCIA habilitado.";
+    break;
+case "dolor":
+    desbloquearArchivo("file-dolor");
+    response = "CRONO: Registro emocional intenso detectado. Registro DOLOR habilitado.";
+    break;
+case "rendición":
+    desbloquearArchivo("file-rendicion");
+    response = "CRONO: ¿Final o inicio? Registro RENDICIÓN habilitado.";
+    break;
+
+                    case "emociones":
+                        response = "CRONO: Variables inestables. Causa probable del bucle.";
+                        break;
+                    case "bucle":
+                        response = "CRONO: Reinicio número 47 confirmado.";
+                        break;
+                    case "fin":
+                        response = "CRONO: Aún no.";
+                        break;
+                    default:
+                        response = "CRONO: Entrada no reconocida.";
                 }
-
-                outputEl.textContent += "\n> " + inputEl.value + "\n" + response + "\n";
-                inputEl.value = "";
-                outputEl.scrollTop = outputEl.scrollHeight;
             }
-        });
+outputEl.classList.add("flash");
+setTimeout(() => outputEl.classList.remove("flash"), 200);
 
-        resetBtn.addEventListener("click", () => {
-            localStorage.removeItem("kora_fragments");
-            updateKORASection();
-            outputEl.textContent += "\n> Sistema: Archivos KORA reiniciados.\n";
-        });
-    </script>
+            outputEl.textContent += > ${input}\n${response}\n\n;
+            inputEl.value = "";
+            outputEl.scrollTop = outputEl.scrollHeight;
+        }
+    });
+    function resetProgress() {
+    if (confirm("¿Reiniciar progreso? Esto borrará los archivos desbloqueados.")) {
+        localStorage.removeItem("kora_fragments");
+        updateKORASection();
+        outputEl.textContent += "> Reinicio manual ejecutado.\nCRONO: Todos los registros han sido eliminados.\n\n";
+        outputEl.scrollTop = outputEl.scrollHeight;
+    }
+}
+function verificarClaveCiclos() {
+    const clave = document.getElementById("clave-ciclos").value.trim().toLowerCase();
+    if (clave === "ciclos") {
+        document.getElementById("clave-ciclos").disabled = true;
+        document.querySelector(".boton-clave").disabled = true;
+        document.getElementById("cargando-ciclos").classList.remove("oculto");
 
-    <!-- Sección KORA -->
-    <div id="kora-section" style="display: none;">
-        <h2>Archivos DÆTA:KORA</h2>
-        <div class="visor kora-file" data-key="anomalia">🔒 ANOMALÍA — [Acceso denegado]</div>
-        <div class="visor kora-file" data-key="ciclos">🔒 CICLOS — [Acceso denegado]</div>
-        <div class="visor kora-file" data-key="interferencia">🔒 INTERFERENCIA — [Acceso denegado]</div>
-        <div class="visor kora-file" data-key="dolor">🔒 DOLOR — [Acceso denegado]</div>
-        <div class="visor kora-file" data-key="rendicion">🔒 RENDICIÓN — [Acceso denegado]</div>
+        setTimeout(() => {
+            document.getElementById("cargando-ciclos").classList.add("oculto");
+            document.getElementById("archivo-ciclos").classList.remove("oculto");
+        }, 2000); // Tiempo de carga simulado
+    }
+}
+
+</script>
+</div>
+
+    <div id="kora-section" style="display: none; margin-top: 40px;">
+    <h2>DÆTA:KORA</h2>
+    <div id="kora-files">
+        <p class="kora-file" data-key="anomalía">🔒 DÆTA:KORA_1 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="ciclos">🔒 DÆTA:KORA_2 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="interferencia">🔒 DÆTA:KORA_3 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="dolor">🔒 DÆTA:KORA_4 — [Acceso denegado]</p>
+        <p class="kora-file" data-key="rendición">🔒 DÆTA:KORA_5 — [Acceso denegado]</p>
     </div>
+</div>
+<!-- Botón para mostrar sección DÆTA:KORA -->
+<button onclick="toggleKORA()" style="margin-top: 20px; padding: 10px; font-family: 'Courier New', monospace; background-color: black; border: 1px solid #00ffcc; color: #00ffcc; cursor: pointer;">
+    Acceder a DÆTA:KORA
+</button>
+<!-- SOLO PARA PRUEBAS - Eliminar antes del escape room -->
+<button onclick="resetProgress()" style="margin-top: 10px; padding: 10px; font-family: 'Courier New', monospace; background-color: black; border: 1px solid red; color: red; cursor: pointer;">
+    🔄 Resetear todo (PRUEBAS)
+</button>
+
 </body>
 </html>
-
