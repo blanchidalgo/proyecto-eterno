@@ -218,110 +218,45 @@ updateKORASection();
                         break;
                     case "anomalía":
     desbloquearArchivo("file-anomalia");
-    response = "CRONO: Término detectado. Registro ANOMALÍA habilitado.";
-    break;
-case "ciclos":
+                        response = "Archivo ANOMALÍA desbloqueado. Revisa sección KORA.";
+                        break;
+                    case "ciclos":
     desbloquearArchivo("file-ciclos");
-    response = "CRONO: Los ciclos no terminan hasta que se comprende el patrón. Registro CICLOS habilitado.";
-    break;
-case "interferencia":
+                        response = "Archivo CICLOS desbloqueado. Revisa sección KORA.";
+                        break;
+                    case "interferencia":
     desbloquearArchivo("file-interferencia");
-    response = "CRONO: Señales cruzadas. Posible sabotaje afectivo. Registro INTERFERENCIA habilitado.";
-    break;
-case "dolor":
+                        response = "Archivo INTERFERENCIA desbloqueado. Revisa sección KORA.";
+                        break;
+                    case "dolor":
     desbloquearArchivo("file-dolor");
-    response = "CRONO: Registro emocional intenso detectado. Registro DOLOR habilitado.";
-    break;
-case "rendición":
+                        response = "Archivo DOLOR desbloqueado. Revisa sección KORA.";
+                        break;
+                    case "rendición":
     desbloquearArchivo("file-rendicion");
-    response = "CRONO: ¿Final o inicio? Registro RENDICIÓN habilitado.";
-    break;
-
-                    case "emociones":
-                        response = "CRONO: Variables inestables. Causa probable del bucle.";
-                        break;
-                    case "bucle":
-                        response = "CRONO: Reinicio número 47 confirmado.";
-                        break;
-                    case "fin":
-                        response = "CRONO: Aún no.";
+                        response = "Archivo RENDICIÓN desbloqueado. Revisa sección KORA.";
                         break;
                     default:
-                        response = "CRONO: Entrada no reconocida.";
+                        response = "CRONO: Comando no reconocido. Intenta otra instrucción.";
                 }
             }
-outputEl.classList.add("flash");
-setTimeout(() => outputEl.classList.remove("flash"), 200);
 
-            outputEl.textContent += `> ${input}\n${response}\n\n`;
+            outputEl.textContent += "\n> " + inputEl.value + "\n" + response + "\n";
             inputEl.value = "";
             outputEl.scrollTop = outputEl.scrollHeight;
         }
     });
-    function resetProgress() {
-    if (confirm("¿Reiniciar progreso? Esto borrará los archivos desbloqueados.")) {
-        localStorage.removeItem("kora_fragments");
-        updateKORASection();
-        outputEl.textContent += "> Reinicio manual ejecutado.\nCRONO: Todos los registros han sido eliminados.\n\n";
-        outputEl.scrollTop = outputEl.scrollHeight;
-    }
-}
-function verificarClaveCiclos() {
-    const clave = document.getElementById("clave-ciclos").value.trim().toLowerCase();
-    if (clave === "ciclos") {
-        document.getElementById("clave-ciclos").disabled = true;
-        document.querySelector(".boton-clave").disabled = true;
-        document.getElementById("cargando-ciclos").classList.remove("oculto");
-
-        setTimeout(() => {
-            document.getElementById("cargando-ciclos").classList.add("oculto");
-            document.getElementById("archivo-ciclos").classList.remove("oculto");
-        }, 2000); // Tiempo de carga simulado
-    }
-}
-
 </script>
-    <div id="visor-ciclos" style="margin-top: 40px;">
-  <input type="text" id="clave-ciclos" placeholder="Introduce palabra clave" class="entrada-clave">
-  <button onclick="verificarClaveCiclos()" class="boton-clave">Acceder</button>
 
-  <div id="cargando-ciclos" class="oculto visor">⏳ Cargando archivo CICLOS...</div>
-
-  <div id="archivo-ciclos" class="archivo oculto visor">
-  <pre>
-📁 CICLOS ANTERIORES
-
-Ciclo 03 - 11 de marzo de 2027
-Estado emocional: estable.
-Interacción destacada: se rieron durante 3 minutos con el vídeo del "Paco papas".
-Comentario personal: Subjetivamente, yo también lo disfruté.
-
-Ciclo 07 - 12 de septiembre de 2029
-Estado emocional: nostálgico.
-Interacción destacada: [Nombre] lloró durante el juego de “La carta que nunca envié”.
-Comentario no enviado a CRONO: No quiero que olviden este momento.
-</pre>
-  </div>
+<!-- Sección KORA -->
+<div id="kora-section" style="display:none;">
+    <h2>Archivos DÆTA:KORA</h2>
+    <div class="visor kora-file" data-key="anomalia">🔒 ANOMALÍA — [Acceso denegado]</div>
+    <div class="visor kora-file" data-key="ciclos">🔒 CICLOS — [Acceso denegado]</div>
+    <div class="visor kora-file" data-key="interferencia">🔒 INTERFERENCIA — [Acceso denegado]</div>
+    <div class="visor kora-file" data-key="dolor">🔒 DOLOR — [Acceso denegado]</div>
+    <div class="visor kora-file" data-key="rendicion">🔒 RENDICIÓN — [Acceso denegado]</div>
 </div>
-
-    <div id="kora-section" style="display: none; margin-top: 40px;">
-    <h2>DÆTA:KORA</h2>
-    <div id="kora-files">
-        <p class="kora-file" data-key="anomalía">🔒 DÆTA:KORA_1 — [Acceso denegado]</p>
-        <p class="kora-file" data-key="ciclos">🔒 DÆTA:KORA_2 — [Acceso denegado]</p>
-        <p class="kora-file" data-key="interferencia">🔒 DÆTA:KORA_3 — [Acceso denegado]</p>
-        <p class="kora-file" data-key="dolor">🔒 DÆTA:KORA_4 — [Acceso denegado]</p>
-        <p class="kora-file" data-key="rendición">🔒 DÆTA:KORA_5 — [Acceso denegado]</p>
-    </div>
-</div>
-<!-- Botón para mostrar sección DÆTA:KORA -->
-<button onclick="toggleKORA()" style="margin-top: 20px; padding: 10px; font-family: 'Courier New', monospace; background-color: black; border: 1px solid #00ffcc; color: #00ffcc; cursor: pointer;">
-    Acceder a DÆTA:KORA
-</button>
-<!-- SOLO PARA PRUEBAS - Eliminar antes del escape room -->
-<button onclick="resetProgress()" style="margin-top: 10px; padding: 10px; font-family: 'Courier New', monospace; background-color: black; border: 1px solid red; color: red; cursor: pointer;">
-    🔄 Resetear todo (PRUEBAS)
-</button>
 
 </body>
 </html>
