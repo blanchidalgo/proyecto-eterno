@@ -142,6 +142,13 @@ function desbloquearArchivo(id) {
         localStorage.setItem("kora_fragments", JSON.stringify(stored));
         updateKORASection();
     }
+
+    // Mostrar automáticamente la sección DÆTA:KORA si está oculta
+    const koraSection = document.getElementById("kora-section");
+    if (koraSection.style.display === "none") {
+        koraSection.style.display = "block";
+    }
+}
      document.getElementById("kora-section").style.display = "block";
     document.getElementById("kora-section").scrollIntoView({ behavior: "smooth" });
 }
